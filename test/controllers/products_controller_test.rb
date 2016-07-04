@@ -2,7 +2,19 @@ require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @product = products(:one)
+    @product = products(:ruby)
+    @product_update = {
+      title: 'Lorem Ipsum',
+      description: 'How boring is lorem ipsum text?',
+      image_url: 'lorem.jpg',
+      price: 19.95
+    }
+    @invalid_product = {
+      title: '',
+      description: '',
+      image_url: '',
+      price: 0
+    }
   end
 
   test "should get index" do
@@ -17,7 +29,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create product" do
     assert_difference('Product.count') do
-      post products_url, params: { product: { description: @product.description, image_url: @product.image_url, price: @product.price, title: @product.title } }
+      post products_url, params: { product: @product_update}
     end
 
     assert_redirected_to product_url(Product.last)
@@ -34,8 +46,16 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: { description: @product.description, image_url: @product.image_url, price: @product.price, title: @product.title } }
+    patch product_url(@product), params: { product: @product_update }
     assert_redirected_to product_url(@product)
+  end
+
+  test "should not create invalid product" do
+    assert_difference('Product.count') do
+      post products_url, params: { product: @product_update }
+    end
+
+    assert_redirected_to product_url(Product.last)
   end
 
   test "should destroy product" do

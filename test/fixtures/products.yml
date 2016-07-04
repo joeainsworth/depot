@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
-  image_url: MyString
+ruby:
+  title: Programming in Ruby 5
+  description: 
+    This is a brand new book that covers the latest additional of rails. Pretty awesome!
+  image_url: rails.png
   price: 9.99
 
 two:

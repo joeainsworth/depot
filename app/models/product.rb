@@ -6,4 +6,8 @@ class Product < ApplicationRecord
     with:     %r{\.(gif|jpg|png)\Z}i,
     message: 'must be a URL for GIF, JPG or PNG'
   }
+
+  def self.latest
+    order(:updated_at).last
+  end
 end

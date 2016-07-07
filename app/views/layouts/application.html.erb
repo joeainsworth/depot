@@ -11,7 +11,7 @@
 
 <body class="<%= controller.controller_name %>">
   <div id="banner">
-    <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
+    <%= link_to image_tag('logo.svg', alt: 'The Pragmatic Bookshelf'), store_index_path %>
       <span class="title"><%= @page_title %></span>
   </div>
   <div id="columns">
@@ -27,6 +27,8 @@
       <%= yield %>
     </div>
   </div>
+
+  <%= debug(params) if Rails.env.development? %>
 </body>
 
 </html>

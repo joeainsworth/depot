@@ -3,7 +3,7 @@ class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
   def index
-    @cart = Cart.all
+    @carts = Cart.all
   end
 
   def show

@@ -11,7 +11,7 @@
         <%= sanitize(product.description) %>
         <div class="price_line">
           <span class="price"><%= number_to_currency product.price %></span>
-          <%= form_for(product, url: line_items_path, method: :post) do |f| %>
+          <%= form_for(product, url: line_items_path, method: :post, remote: true) do |f| %>
             <%= hidden_field_tag(:product_id, product.id) %>
             <%= select_tag :quantity, options_for_select(1..50) %>
             <%= f.submit "Add to cart" %>
